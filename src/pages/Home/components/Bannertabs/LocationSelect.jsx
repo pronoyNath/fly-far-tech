@@ -15,7 +15,7 @@ const LocationSelect = ({flightData,departureCity,handleDepartureCityChange}) =>
         onChange={handleDepartureCityChange}
         displayEmpty
         sx={{
-          width: { xs: '100%', md: 'auto' }, // Full width on small screens, auto width on larger
+          width: { xs: '100%' }, // Full width on small screens, auto width on larger
           maxWidth: { xs: 'none', md: '250px' } ,
           "& .MuiSelect-select": {
             py: 0.5,

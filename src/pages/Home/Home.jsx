@@ -1,24 +1,16 @@
-import bannerImg from "../../assets/mainbannerimg.webp";
-import Box from "@mui/material/Box";
-import BannerTabs from "./components/Bannertabs/BannerTabs";
+import Banner from "./Banner/Banner";
+import HotDeals from "./components/HotDeals/HotDeals";
+import SliderSection from "./components/SliderSection/SliderSection";
+
 
 const Home = () => {
   return (
-    <div className="max-w-[72rem] mx-auto px-4">
-      <Box
-        sx={{
-          backgroundImage: `url(${bannerImg})`, // Path to your image
-          backgroundSize: "cover",
-          // backgroundPosition: 'center',
-          minHeight: "400px",
-          width: "100%",
-          borderRadius: "20px",
-        }}
-      >
-        {/* You can add content here if needed */}
-        <BannerTabs/>
-      </Box>
-      <div className="bg-red-400 min-h-screen"></div>
+    <div>
+      <Banner />
+      <div className="px-4">
+      <SliderSection/>
+      <HotDeals/>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ const RightSide = () => {
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
+  const [seatClass, setSeatClass] = useState("Economy");
 
   return (
     <Box
@@ -19,6 +20,7 @@ const RightSide = () => {
         gap: 2
       }}
     >
+      <Box>
       {/* Dropdowns Row - always in row, full width */}
       <Box
         sx={{
@@ -96,6 +98,30 @@ const RightSide = () => {
             </MenuItem>
           ))}
         </Select>
+        
+      </Box>
+      <Select
+          value={seatClass}
+          onChange={(e) => setSeatClass(e.target.value)}
+          variant="outlined"
+          size="small"
+          sx={{
+            width: "100%",
+            backgroundColor: "secondary.main",
+            borderRadius: "4px",
+            fontSize: "0.875rem",
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "divider",
+            },
+            marginTop: 2,
+          }}
+        >
+          {["Economy","Premium Economy", "Business","Premium Business", "First Class"].map((num) => (
+            <MenuItem key={`infant-${num}`} value={num} sx={{ fontSize: "0.875rem" }}>
+              {num} 
+            </MenuItem>
+          ))}
+        </Select>
       </Box>
 
       {/* Search Button - fixed at bottom */}
@@ -115,11 +141,11 @@ const RightSide = () => {
             py: 1,
             borderRadius: "4px",
             fontSize: "0.875rem",
-            fontWeight: "bold",
+            fontWeight: "400",
             textTransform: "none",
           }}
         >
-          Search Flights
+          SEARCH FOR FLIGHT
         </Button>
       </Box>
     </Box>
