@@ -11,7 +11,9 @@ const MainLayout = () => {
           minHeight: "100vh",
         }}
       >
-        <Navbar />
+        <div className="sticky top-0 z-50">
+          <Navbar />
+        </div>
         <Outlet />
       </Box>
     </div>

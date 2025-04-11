@@ -25,6 +25,34 @@ const theme = createTheme({
         },
       },
     },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          minHeight: 'unset', // Remove default min-height
+          padding: '12px 12px', // Adjust padding to make tabs more compact
+          '&.Mui-selected': {
+            color: '#32D094', // Custom selected color
+          },
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        root: {
+          minHeight: 'unset', // Remove default min-height
+        },
+        indicator: {
+          height: '3px', // Make indicator thinner if needed
+        },
+      },
+    },
+    MuiTabPanel: {
+      styleOverrides: {
+        root: {
+          padding: '16px 0', // Adjust tab panel padding
+        },
+      },
+    },
   },
 });
 

@@ -1,28 +1,43 @@
+import logo from "../../assets/companylogo.webp";
+import { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 
 export default function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-        position="static"
+        position="sticky"
         elevation={0}
         sx={{
-          bgcolor: "#EDF2F6",
+          bgcolor: isScrolled ? "#ffffff" : "#EDF2F6",
           color: "#000000",
           py: 2,
           px: 5,
+          transition: "background-color 0.3s ease",
+          zIndex: 1100,
           "@media (max-width: 600px)": {
-            padding: "9px 18px",
+            padding: "9px 18px 0px 18px",
             fontSize: "0.8rem",
           },
         }}
       >
         <Toolbar sx={{ justifyContent: "space-between" }}>
           <img
-            src="https://cdn.flyfarint.com/WL/B2C/FFA2654/companylogo.webp?t=1744358987733"
+            src={logo}
             alt="FlyFar Logo"
             style={{ height: "60px", objectFit: "contain" }}
           />
@@ -31,9 +46,7 @@ export default function Navbar() {
               variant="contained"
               color="primary"
               sx={{
-                // Default size
-                padding: "8px 16px",
-                // Responsive: make button smaller on small screens
+                padding: "4px 16px",
                 "@media (max-width: 600px)": {
                   padding: "6px 8px",
                   fontSize: "0.8rem",
@@ -47,7 +60,7 @@ export default function Navbar() {
               sx={{
                 backgroundColor: "secondary.dark",
                 color: "white",
-                padding: "8px 16px",
+                padding: "4px 16px",
                 "@media (max-width: 600px)": {
                   padding: "6px 8px",
                   fontSize: "0.8rem",
