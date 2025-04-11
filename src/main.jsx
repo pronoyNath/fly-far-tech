@@ -18,6 +18,7 @@ const theme = createTheme({
     },
   },
   components: {
+    // Button styles
     MuiButton: {
       styleOverrides: {
         root: {
@@ -25,31 +26,107 @@ const theme = createTheme({
         },
       },
     },
+    
+    // Tab styles
     MuiTab: {
       styleOverrides: {
         root: {
-          minHeight: 'unset', // Remove default min-height
-          padding: '12px 12px', // Adjust padding to make tabs more compact
+          minHeight: 'unset',
+          padding: '12px 12px',
           '&.Mui-selected': {
-            color: '#32D094', // Custom selected color
+            color: '#32D094',
           },
         },
       },
     },
+    
+    // Tabs styles
     MuiTabs: {
       styleOverrides: {
         root: {
-          minHeight: 'unset', // Remove default min-height
+          minHeight: 'unset',
         },
         indicator: {
-          height: '3px', // Make indicator thinner if needed
+          height: '3px',
         },
       },
     },
+    
+    // TabPanel styles
     MuiTabPanel: {
       styleOverrides: {
         root: {
-          padding: '16px 0', // Adjust tab panel padding
+          padding: '16px 0',
+        },
+      },
+    },
+    
+    // Select (Dropdown) styles
+    MuiSelect: {
+      styleOverrides: {
+        select: {
+          backgroundColor: 'secondary.main',
+          '&:focus': {
+            backgroundColor: 'secondary.main',
+          },
+        },
+      },
+    },
+    
+    // OutlinedInput (Dropdown border) styles
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            border: 'none',
+          },
+        },
+      },
+    },
+    
+    // FilledInput (Alternative dropdown style)
+    MuiFilledInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'secondary.main',
+          '&:hover': {
+            backgroundColor: 'secondary.main',
+          },
+          '&.Mui-focused': {
+            backgroundColor: 'secondary.main',
+          },
+          '&:before, &:after': {
+            borderBottom: 'none',
+          },
+        },
+      },
+    },
+    
+    // Menu (Dropdown items) styles
+    MuiMenu: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: 'secondary.main',
+        },
+      },
+    },
+    
+    // MenuItem styles
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            backgroundColor: 'rgba(50, 208, 148, 0.12)',
+          },
+          '&.Mui-selected:hover': {
+            backgroundColor: 'rgba(50, 208, 148, 0.2)',
+          },
         },
       },
     },

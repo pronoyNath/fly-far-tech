@@ -25,7 +25,8 @@ export default function Navbar() {
         sx={{
           bgcolor: isScrolled ? "#ffffff" : "#EDF2F6",
           color: "#000000",
-          py: 2,
+          pt: 2,
+          pb:1,
           px: 5,
           transition: "background-color 0.3s ease",
           zIndex: 1100,

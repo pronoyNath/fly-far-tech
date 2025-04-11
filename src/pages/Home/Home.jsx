@@ -4,7 +4,7 @@ import BannerTabs from "./components/Bannertabs/BannerTabs";
 
 const Home = () => {
   return (
-    <div className="max-w-[70rem] mx-auto px-4">
+    <div className="max-w-[72rem] mx-auto px-4">
       <Box
         sx={{
           backgroundImage: `url(${bannerImg})`, // Path to your image

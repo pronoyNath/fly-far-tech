@@ -3,17 +3,20 @@ import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 
 const LocationSelect = ({flightData,departureCity,handleDepartureCityChange}) => {
   return (
-    <Box className="relative border-none outline-none">
+    <Box className="relative border-none outline-none w-full">
       <Box className="absolute left-0 bottom-0 top-0 flex items-center justify-center mx-auto rounded-l-md pl-2 bg-primary text-white break-words border-none outline-none z-10">
         <FmdGoodOutlinedIcon color="white" sx={{ mr: 1 }} />
       </Box>
       <Select
+
         variant="filled"
         className="bg-secondary"
         value={departureCity}
         onChange={handleDepartureCityChange}
         displayEmpty
         sx={{
+          width: { xs: '100%', md: 'auto' }, // Full width on small screens, auto width on larger
+          maxWidth: { xs: 'none', md: '250px' } ,
           "& .MuiSelect-select": {
             py: 0.5,
             ml: 4,
