@@ -4,6 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,11 +38,14 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ justifyContent: "space-between" }}>
-          <img
+         <Link to={"/"}>
+         <img
             src={logo}
             alt="FlyFar Logo"
+            className="cursor-pointer"
             style={{ height: "60px", objectFit: "contain" }}
           />
+         </Link>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Button
               variant="contained"

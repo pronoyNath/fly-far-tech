@@ -11,7 +11,7 @@ import {
   LocationOn,
   WhatsApp,
 } from "@mui/icons-material";
-import SendIcon from '@mui/icons-material/Send';
+import SendIcon from "@mui/icons-material/Send";
 import EmailIcon from "@mui/icons-material/Email";
 const Footer = () => {
   return (
@@ -89,31 +89,42 @@ const Footer = () => {
                 <img className="w-20 h-12" src={cer4} alt="" />
                 <img className="w-20 h-12" src={cer5} alt="" />
               </a>
-              
             </div>
           </div>
           <div className="flex flex-col space-y-4">
             <h2 className="font-medium text-xl">Get In Touch</h2>
             <div className="flex flex-col space-y-2 text-sm text-gray-50">
               <a rel="noopener noreferrer" href="#">
-              Question or feedback we would love to hear from you
+                Question or feedback we would love to hear from you
               </a>
-             
-               <div className="relative rounded-full outline bg-primary
-                text-white px-5 py-2">
-               <input type="text" 
-                placeholder="Email Address"
-                className="w-full bg-primary" />
-                <SendIcon className="text-primary -rotate-12 absolute right-3 top-1 p-1 h-20 text-xl w-20 bg-white rounded-full " />
-               </div>
-              
-              
+
+              <div
+                className="relative rounded-full outline bg-primary
+                text-white px-5 py-2"
+              >
+                <input
+                  type="text"
+                  placeholder="Email Address"
+                  className="w-full bg-primary"
+                />
+                <SendIcon
+                  sx={{
+                    transform: "rotate(-45deg)", 
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                  className="text-primary absolute right-3 top-1 p-1 h-20 w-20 text-xl bg-white rounded-full"
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-center px-6 pt-12 text-sm" >
-		<img className="w-[50rem]" src="https://cdn.flyfarint.com/WL/B2C/PaymentGetWay/FFA2654/paymentgetwayimg.webp?t=1744408513102" alt="" />
-	</div>
+        <div className="flex items-center justify-center px-6 pt-12 text-sm">
+          <img
+            className="w-[50rem]"
+            src="https://cdn.flyfarint.com/WL/B2C/PaymentGetWay/FFA2654/paymentgetwayimg.webp?t=1744408513102"
+            alt=""
+          />
+        </div>
       </footer>
     </div>
   );
