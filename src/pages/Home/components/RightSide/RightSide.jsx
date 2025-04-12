@@ -1,7 +1,7 @@
 import { Box, MenuItem, Select, Button } from "@mui/material";
 import { useState } from "react";
 
-const RightSide = () => {
+const RightSide = ({ tripType , handleAddMulticity}) => {
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
@@ -17,90 +17,101 @@ const RightSide = () => {
         backgroundColor: "white",
         position: "relative",
         width: "100%",
-        gap: 2
+        gap: 2,
       }}
     >
       <Box>
-      {/* Dropdowns Row - always in row, full width */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 1,
-          width: "100%",
-          "& > *": {
-            flex: 1 // Makes each dropdown take equal space
-          }
-        }}
-      >
-        <Select
-          value={adultCount}
-          onChange={(e) => setAdultCount(e.target.value)}
-          variant="outlined"
-          size="small"
+        {/* Dropdowns Row - always in row, full width */}
+        <Box
           sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: 1,
             width: "100%",
-            backgroundColor: "secondary.main",
-            borderRadius: "4px",
-            fontSize: "0.875rem",
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "divider",
+            "& > *": {
+              flex: 1, // Makes each dropdown take equal space
             },
           }}
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-            <MenuItem key={`adult-${num}`} value={num} sx={{ fontSize: "0.875rem" }}>
-              {num} Adult{num !== 1 ? "s" : ""}
-            </MenuItem>
-          ))}
-        </Select>
+          <Select
+            value={adultCount}
+            onChange={(e) => setAdultCount(e.target.value)}
+            variant="outlined"
+            size="small"
+            sx={{
+              width: "100%",
+              backgroundColor: "secondary.main",
+              borderRadius: "4px",
+              fontSize: "0.875rem",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "divider",
+              },
+            }}
+          >
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+              <MenuItem
+                key={`adult-${num}`}
+                value={num}
+                sx={{ fontSize: "0.875rem" }}
+              >
+                {num} Adult{num !== 1 ? "s" : ""}
+              </MenuItem>
+            ))}
+          </Select>
 
-        <Select
-          value={childCount}
-          onChange={(e) => setChildCount(e.target.value)}
-          variant="outlined"
-          size="small"
-          sx={{
-            width: "100%",
-            backgroundColor: "secondary.main",
-            borderRadius: "4px",
-            fontSize: "0.875rem",
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "divider",
-            },
-          }}
-        >
-          {[0, 1, 2, 3, 4, 5, 6].map((num) => (
-            <MenuItem key={`child-${num}`} value={num} sx={{ fontSize: "0.875rem" }}>
-              {num} Child{num !== 1 ? "ren" : ""}
-            </MenuItem>
-          ))}
-        </Select>
+          <Select
+            value={childCount}
+            onChange={(e) => setChildCount(e.target.value)}
+            variant="outlined"
+            size="small"
+            sx={{
+              width: "100%",
+              backgroundColor: "secondary.main",
+              borderRadius: "4px",
+              fontSize: "0.875rem",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "divider",
+              },
+            }}
+          >
+            {[0, 1, 2, 3, 4, 5, 6].map((num) => (
+              <MenuItem
+                key={`child-${num}`}
+                value={num}
+                sx={{ fontSize: "0.875rem" }}
+              >
+                {num} Child{num !== 1 ? "ren" : ""}
+              </MenuItem>
+            ))}
+          </Select>
 
+          <Select
+            value={infantCount}
+            onChange={(e) => setInfantCount(e.target.value)}
+            variant="outlined"
+            size="small"
+            sx={{
+              width: "100%",
+              backgroundColor: "secondary.main",
+              borderRadius: "4px",
+              fontSize: "0.875rem",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "divider",
+              },
+            }}
+          >
+            {[0, 1, 2, 3, 4].map((num) => (
+              <MenuItem
+                key={`infant-${num}`}
+                value={num}
+                sx={{ fontSize: "0.875rem" }}
+              >
+                {num} Infant{num !== 1 ? "s" : ""}
+              </MenuItem>
+            ))}
+          </Select>
+        </Box>
         <Select
-          value={infantCount}
-          onChange={(e) => setInfantCount(e.target.value)}
-          variant="outlined"
-          size="small"
-          sx={{
-            width: "100%",
-            backgroundColor: "secondary.main",
-            borderRadius: "4px",
-            fontSize: "0.875rem",
-            "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: "divider",
-            },
-          }}
-        >
-          {[0, 1, 2, 3, 4].map((num) => (
-            <MenuItem key={`infant-${num}`} value={num} sx={{ fontSize: "0.875rem" }}>
-              {num} Infant{num !== 1 ? "s" : ""}
-            </MenuItem>
-          ))}
-        </Select>
-        
-      </Box>
-      <Select
           value={seatClass}
           onChange={(e) => setSeatClass(e.target.value)}
           variant="outlined"
@@ -116,9 +127,19 @@ const RightSide = () => {
             marginTop: 2,
           }}
         >
-          {["Economy","Premium Economy", "Business","Premium Business", "First Class"].map((num) => (
-            <MenuItem key={`infant-${num}`} value={num} sx={{ fontSize: "0.875rem" }}>
-              {num} 
+          {[
+            "Economy",
+            "Premium Economy",
+            "Business",
+            "Premium Business",
+            "First Class",
+          ].map((num) => (
+            <MenuItem
+              key={`infant-${num}`}
+              value={num}
+              sx={{ fontSize: "0.875rem" }}
+            >
+              {num}
             </MenuItem>
           ))}
         </Select>
@@ -147,6 +168,24 @@ const RightSide = () => {
         >
           SEARCH FOR FLIGHT
         </Button>
+        {tripType == "multi" && (
+          <Button
+          onClick={handleAddMulticity}
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{
+              py: 1,
+              mt: 2,
+              borderRadius: "4px",
+              fontSize: "0.875rem",
+              fontWeight: "400",
+              textTransform: "none",
+            }}
+          >
+            ADD CITY
+          </Button>
+        )}
       </Box>
     </Box>
   );
