@@ -60,7 +60,9 @@ export default function BannerTabs() {
   const [value, setValue] = React.useState("1");
   const [tripType, setTripType] = React.useState("round");
   const [departureCity, setDepartureCity] = React.useState("DAC"); // Initialize with a default value
+  const [arrivalCity, setArrivalCity] = React.useState("CXB"); // New state for arrival city
   const [departureDate, setDepartureDate] = React.useState(new Date()); // Initialize with current date
+  const [returnDate, setReturnDate] = React.useState(new Date()); // New state for return date
 
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -74,8 +76,17 @@ export default function BannerTabs() {
     setDepartureCity(event.target.value);
   };
 
+  const handleArrivalCityChange = (event) => {
+    setArrivalCity(event.target.value);
+  };
+
   const handleDepartureDateChange = (event) => {
-    setDepartureDate(event.target.value);
+    setDepartureDate(new Date(event.target.value));
+    console.log(event.target.value);
+  };
+  
+  const handleReturnDateChange = (event) => {
+    setReturnDate(new Date(event.target.value));
     console.log(event.target.value);
   };
 
@@ -115,8 +126,7 @@ export default function BannerTabs() {
                     display: "flex",
                     px: { xs: 1, sm: 1, md: 0.5 },
                     padding: { xs: 1, sm: 1, md: 0.5 },
-
-                    gap: { xs: 1, sm: 0.5 }, // Add gap between stacked items on mobile
+                    gap: { xs: 1, sm: 0.5 },
                   }}
                 >
                   <Button
@@ -125,9 +135,9 @@ export default function BannerTabs() {
                     value="1"
                     sx={{
                       ...buttonSx("1"),
-                      flexDirection: { xs: "column", sm: "row" }, // Stack icon and text on mobile
-                      gap: { xs: 0.5 }, // Adjust gap between icon and text
-                      minWidth: { xs: "auto", sm: "120px" }, // Adjust width for mobile
+                      flexDirection: { xs: "column", sm: "row" },
+                      gap: { xs: 0.5 },
+                      minWidth: { xs: "auto", sm: "120px" },
                     }}
                   >
                     FLIGHT
@@ -179,7 +189,6 @@ export default function BannerTabs() {
                     <Box
                       className="h-full w-full px-4"
                       sx={{
-                        // width: "100%",
                         backgroundColor: "white",
                         borderRadius: "9px",
                         padding: { xs: "15px", sm: "20px", md: "20px" },
@@ -195,18 +204,17 @@ export default function BannerTabs() {
                             onChange={handleTripTypeChange}
                             sx={{
                               gap: { xs: 0.5, sm: 2 },
-                              flexWrap: { xs: 'wrap', sm: 'nowrap' }, // Allow wrapping on small screens
-                              justifyContent: { xs: 'center', sm: 'flex-start' }, // Center on small, left-align on medium+
-                              width: { xs: '100%', sm: 'auto' }, // Full width on small screens
-                          
+                              flexWrap: { xs: 'wrap', sm: 'nowrap' },
+                              justifyContent: { xs: 'center', sm: 'flex-start' },
+                              width: { xs: '100%', sm: 'auto' },
                               "& .MuiFormControlLabel-label": {
                                 fontSize: { xs: "0.75rem", sm: "0.875rem" },
                                 color: "primary.main",
                                 fontWeight: 500,
                               },
                               "& .MuiFormControlLabel-root": {
-                                marginRight: { xs: '8px', sm: '0' }, // Add spacing between wrapped items
-                                marginLeft: { xs: '8px', sm: '0' }, // Add spacing between wrapped items
+                                marginRight: { xs: '8px', sm: '0' },
+                                marginLeft: { xs: '8px', sm: '0' },
                               }
                             }}
                           >
@@ -272,7 +280,7 @@ export default function BannerTabs() {
                               alignItems: "center",
                             }}
                           >
-                            {/* left side  */}
+                            {/* left side - FROM */}
                             <Box
                               sx={{
                                 flex: 1,
@@ -292,21 +300,17 @@ export default function BannerTabs() {
                               </Typography>
 
                               <Typography
-                                // variant="h3"
                                 color="primary"
                                 sx={{ mb: 0.5, fontSize: "2.5rem" }}
                               >
                                 {departureCity}
                               </Typography>
-                              {/* location select  */}
                               <LocationSelect
                                 flightData={flightData}
+                                selectedCity={departureCity}
                                 departureCity={departureCity}
-                                handleDepartureCityChange={
-                                  handleDepartureCityChange
-                                }
+                                handleDepartureCityChange={handleDepartureCityChange}
                               />
-                              {/* calender select  */}
                               <Box
                                 className="relative border-none outline-none mx-auto mt-3 text-center "
                                 sx={{ width: "100%" }}
@@ -320,8 +324,6 @@ export default function BannerTabs() {
                                     sx={{ mr: 1 }}
                                   />
                                 </Box>
-
-                                {/* Native date input (visible and styled) */}
                                 <TextField
                                   type="date"
                                   variant="filled"
@@ -334,20 +336,19 @@ export default function BannerTabs() {
                                     "& .MuiFilledInput-root": {
                                       backgroundColor: "secondary.main",
                                       borderRadius: "7px",
-                                      pl: 5, // Make space for the icon
+                                      pl: 5,
                                     },
                                     "& .MuiFilledInput-input": {
-                                      py: 0.6, // Adjust padding for better visibility
+                                      py: 0.6,
                                       pr: 2,
                                     },
                                     "&:before, &:after, &:hover:not(.Mui-disabled):before":
                                       {
                                         borderBottom: "none",
                                       },
-
                                     margin: "0 auto",
                                     "& .MuiInputAdornment-root": {
-                                      display: "none", // Hide default calendar icon
+                                      display: "none",
                                     },
                                   }}
                                   InputProps={{
@@ -356,7 +357,7 @@ export default function BannerTabs() {
                                 />
                               </Box>
                             </Box>
-                            {/* middle for icon  */}
+                            {/* middle for icon */}
                             <Box className="relative my-auto hidden md:block">
                               <AirplanemodeActiveIcon
                                 className="absolute -top-[0.2rem]"
@@ -378,7 +379,7 @@ export default function BannerTabs() {
                                 }}
                               />
                             </Box>
-                            {/* right side  */}
+                            {/* right side - TO */}
                             <Box
                               sx={{
                                 flex: 1,
@@ -394,25 +395,21 @@ export default function BannerTabs() {
                                 color="secondary.dark"
                                 sx={{ mb: 0, fontSize: "1rem" }}
                               >
-                                FROM
+                                TO
                               </Typography>
 
                               <Typography
-                                // variant="h3"
                                 color="primary"
                                 sx={{ mb: 0.5, fontSize: "2.5rem" }}
                               >
-                                {departureCity}
+                                {arrivalCity}
                               </Typography>
-                              {/* location select  */}
                               <LocationSelect
                                 flightData={flightData}
-                                departureCity={departureCity}
-                                handleDepartureCityChange={
-                                  handleDepartureCityChange
-                                }
+                                selectedCity={arrivalCity}
+                                departureCity={arrivalCity}
+                                handleDepartureCityChange={handleArrivalCityChange}
                               />
-                              {/* calender select  */}
                               <Box
                                 className="relative border-none outline-none mx-auto mt-3 text-center "
                                 sx={{ width: "100%" }}
@@ -426,8 +423,96 @@ export default function BannerTabs() {
                                     sx={{ mr: 1 }}
                                   />
                                 </Box>
-
-                                {/* Native date input (visible and styled) */}
+                                <TextField
+                                  type="date"
+                                  variant="filled"
+                                  value={
+                                    returnDate.toISOString().split("T")[0]
+                                  }
+                                  onChange={handleReturnDateChange}
+                                  sx={{
+                                    width: "100%",
+                                    "& .MuiFilledInput-root": {
+                                      backgroundColor: "secondary.main",
+                                      borderRadius: "7px",
+                                      pl: 5,
+                                    },
+                                    "& .MuiFilledInput-input": {
+                                      py: 0.6,
+                                      pr: 2,
+                                    },
+                                    "&:before, &:after, &:hover:not(.Mui-disabled):before":
+                                      {
+                                        borderBottom: "none",
+                                      },
+                                    margin: "0 auto",
+                                    "& .MuiInputAdornment-root": {
+                                      display: "none",
+                                    },
+                                  }}
+                                  InputProps={{
+                                    disableUnderline: true,
+                                  }}
+                                />
+                              </Box>
+                            </Box>
+                          </Box>
+                        )}
+                        {tripType === "one" && (
+                             <Box
+                             mt={2}
+                             sx={{
+                               display: "flex",
+                               flexDirection: { xs: "column", md: "row" },
+                               gap: 2,
+                               justifyContent: "space-between",
+                               alignItems: "start",
+                             }}
+                           >
+                             {/* one-way left side - FROM */}
+                             <Box
+                               sx={{
+                                 flex: 1,
+                                 display: "flex",
+                                 flexDirection: "column",
+                                 alignItems: "center",
+                                 width: { xs: "100%", md: "auto" },
+                                 maxWidth: { xs: "none", md: "250px" },
+                               }}
+                             >
+                               <Typography
+                                 variant="h7"
+                                 color="secondary.dark"
+                                 sx={{ mb: 0, fontSize: "1rem" }}
+                               >
+                                 FROM
+                               </Typography>
+   
+                               <Typography
+                                 color="primary"
+                                 sx={{ mb: 0.5, fontSize: "2.5rem" }}
+                               >
+                                 {departureCity}
+                               </Typography>
+                               <LocationSelect
+                                 flightData={flightData}
+                                 selectedCity={departureCity}
+                                 departureCity={departureCity}
+                                 handleDepartureCityChange={handleDepartureCityChange}
+                               />
+                               <Box
+                                className="relative border-none outline-none mx-auto mt-3 text-center "
+                                sx={{ width: "100%" }}
+                              >
+                                <Box
+                                  className="absolute left-0 bottom-0 top-0 flex items-center justify-center mx-auto  rounded-l-md pl-2 bg-primary text-white break-words border-none outline-none z-10"
+                                  sx={{ width: "40px" }}
+                                >
+                                  <CalendarMonthIcon
+                                    color="white"
+                                    sx={{ mr: 1 }}
+                                  />
+                                </Box>
                                 <TextField
                                   type="date"
                                   variant="filled"
@@ -440,41 +525,343 @@ export default function BannerTabs() {
                                     "& .MuiFilledInput-root": {
                                       backgroundColor: "secondary.main",
                                       borderRadius: "7px",
-                                      pl: 5, // Make space for the icon
+                                      pl: 5,
                                     },
                                     "& .MuiFilledInput-input": {
-                                      py: 0.6, // Adjust padding for better visibility
+                                      py: 0.6,
                                       pr: 2,
                                     },
                                     "&:before, &:after, &:hover:not(.Mui-disabled):before":
                                       {
                                         borderBottom: "none",
                                       },
-
                                     margin: "0 auto",
                                     "& .MuiInputAdornment-root": {
-                                      display: "none", // Hide default calendar icon
+                                      display: "none",
                                     },
                                   }}
                                   InputProps={{
                                     disableUnderline: true,
                                   }}
                                 />
-                              </Box>
-                            </Box>
-                          </Box>
-                        )}
-                        {tripType === "one" && (
-                          <Box mt={2}>
-                            <p>One way content: Select only departure date</p>
-                          </Box>
+                              </Box>  
+                             </Box>
+                             {/* one-way middle for icon */}
+                             <Box className=" my-auto hidden md:block">
+                               <AirplanemodeActiveIcon
+                                 className=""
+                                 sx={{
+                                   transform: "rotate(90deg)",
+                                   fontSize: "6rem",
+                                   color: "primary.main",
+                                 }}
+                               />
+                              
+                             </Box>
+                             {/* right side - TO */}
+                             <Box
+                               sx={{
+                                 flex: 1,
+                                 display: "flex",
+                                 flexDirection: "column",
+                                 alignItems: "center",
+                                 width: { xs: "100%", md: "auto" },
+                                 maxWidth: { xs: "none", md: "250px" },
+                               }}
+                             >
+                               <Typography
+                                 variant="h7"
+                                 color="secondary.dark"
+                                 sx={{ mb: 0, fontSize: "1rem" }}
+                               >
+                                 TO
+                               </Typography>
+   
+                               <Typography
+                                 color="primary"
+                                 sx={{ mb: 0.5, fontSize: "2.5rem" }}
+                               >
+                                 {arrivalCity}
+                               </Typography>
+                               <LocationSelect
+                                 flightData={flightData}
+                                 selectedCity={arrivalCity}
+                                 departureCity={arrivalCity}
+                                 handleDepartureCityChange={handleArrivalCityChange}
+                               />
+                             
+                             </Box>
+                           </Box>
                         )}
                         {tripType === "multi" && (
-                          <Box mt={2}>
-                            <p>
-                              Multi-city content: Add multiple destinations and
-                              dates
-                            </p>
+                          <Box>
+                            <Box
+                          mt={2}
+                          sx={{
+                            display: "flex",
+                            flexDirection: { xs: "column", md: "row" },
+                            gap: 2,
+                            justifyContent: "space-between",
+                            alignItems: "start",
+                          }}
+                        >
+                          {/* multi-way left side - FROM */}
+                          <Box
+                            sx={{
+                              flex: 1,
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              width: { xs: "100%", md: "auto" },
+                              maxWidth: { xs: "none", md: "250px" },
+                            }}
+                          >
+                            <Typography
+                              variant="h7"
+                              color="secondary.dark"
+                              sx={{ mb: 0, fontSize: "1rem" }}
+                            >
+                              FROM
+                            </Typography>
+
+                            <Typography
+                              color="primary"
+                              sx={{ mb: 0.5, fontSize: "2.5rem" }}
+                            >
+                              {departureCity}
+                            </Typography>
+                            <LocationSelect
+                              flightData={flightData}
+                              selectedCity={departureCity}
+                              departureCity={departureCity}
+                              handleDepartureCityChange={handleDepartureCityChange}
+                            />
+                             
+                          </Box>
+                          {/* multi-way middle for icon */}
+                          <Box className=" my-auto hidden md:block">
+                            <AirplanemodeActiveIcon
+                              className=""
+                              sx={{
+                                transform: "rotate(90deg)",
+                                fontSize: "6rem",
+                                color: "primary.main",
+                              }}
+                            />
+                           
+                          </Box>
+                          {/* multi-way right side - TO */}
+                          <Box
+                            sx={{
+                              flex: 1,
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              width: { xs: "100%", md: "auto" },
+                              maxWidth: { xs: "none", md: "250px" },
+                            }}
+                          >
+                            <Typography
+                              variant="h7"
+                              color="secondary.dark"
+                              sx={{ mb: 0, fontSize: "1rem" }}
+                            >
+                              TO
+                            </Typography>
+
+                            <Typography
+                              color="primary"
+                              sx={{ mb: 0.5, fontSize: "2.5rem" }}
+                            >
+                              {arrivalCity}
+                            </Typography>
+                            <LocationSelect
+                              flightData={flightData}
+                              selectedCity={arrivalCity}
+                              departureCity={arrivalCity}
+                              handleDepartureCityChange={handleArrivalCityChange}
+                            />
+                          <Box
+                             className="relative border-none outline-none mx-auto mt-3 text-center "
+                             sx={{ width: "100%" }}
+                           >
+                             <Box
+                               className="absolute left-0 bottom-0 top-0 flex items-center justify-center mx-auto  rounded-l-md pl-2 bg-primary text-white break-words border-none outline-none z-10"
+                               sx={{ width: "40px" }}
+                             >
+                               <CalendarMonthIcon
+                                 color="white"
+                                 sx={{ mr: 1 }}
+                               />
+                             </Box>
+                             <TextField
+                               type="date"
+                               variant="filled"
+                               value={
+                                 departureDate.toISOString().split("T")[0]
+                               }
+                               onChange={handleDepartureDateChange}
+                               sx={{
+                                 width: "100%",
+                                 "& .MuiFilledInput-root": {
+                                   backgroundColor: "secondary.main",
+                                   borderRadius: "7px",
+                                   pl: 5,
+                                 },
+                                 "& .MuiFilledInput-input": {
+                                   py: 0.6,
+                                   pr: 2,
+                                 },
+                                 "&:before, &:after, &:hover:not(.Mui-disabled):before":
+                                   {
+                                     borderBottom: "none",
+                                   },
+                                 margin: "0 auto",
+                                 "& .MuiInputAdornment-root": {
+                                   display: "none",
+                                 },
+                               }}
+                               InputProps={{
+                                 disableUnderline: true,
+                               }}
+                             />
+                           </Box> 
+                          </Box>
+                        </Box>
+                        {/* second multi  */}
+                        <Box
+                          mt={2}
+                          sx={{
+                            display: "flex",
+                            flexDirection: { xs: "column", md: "row" },
+                            gap: 2,
+                            justifyContent: "space-between",
+                            alignItems: "start",
+                          }}
+                        >
+                          {/* multi-way left side - FROM */}
+                          <Box
+                            sx={{
+                              flex: 1,
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              width: { xs: "100%", md: "auto" },
+                              maxWidth: { xs: "none", md: "250px" },
+                            }}
+                          >
+                            <Typography
+                              variant="h7"
+                              color="secondary.dark"
+                              sx={{ mb: 0, fontSize: "1rem" }}
+                            >
+                              FROM
+                            </Typography>
+
+                            <Typography
+                              color="primary"
+                              sx={{ mb: 0.5, fontSize: "2.5rem" }}
+                            >
+                              {departureCity}
+                            </Typography>
+                            <LocationSelect
+                              flightData={flightData}
+                              selectedCity={departureCity}
+                              departureCity={departureCity}
+                              handleDepartureCityChange={handleDepartureCityChange}
+                            />
+                             
+                          </Box>
+                          {/* multi-way middle for icon */}
+                          <Box className=" my-auto hidden md:block">
+                            <AirplanemodeActiveIcon
+                              className=""
+                              sx={{
+                                transform: "rotate(90deg)",
+                                fontSize: "6rem",
+                                color: "primary.main",
+                              }}
+                            />
+                           
+                          </Box>
+                          {/* multi-way right side - TO */}
+                          <Box
+                            sx={{
+                              flex: 1,
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              width: { xs: "100%", md: "auto" },
+                              maxWidth: { xs: "none", md: "250px" },
+                            }}
+                          >
+                            <Typography
+                              variant="h7"
+                              color="secondary.dark"
+                              sx={{ mb: 0, fontSize: "1rem" }}
+                            >
+                              TO
+                            </Typography>
+
+                            <Typography
+                              color="primary"
+                              sx={{ mb: 0.5, fontSize: "2.5rem" }}
+                            >
+                              {arrivalCity}
+                            </Typography>
+                            <LocationSelect
+                              flightData={flightData}
+                              selectedCity={arrivalCity}
+                              departureCity={arrivalCity}
+                              handleDepartureCityChange={handleArrivalCityChange}
+                            />
+                          <Box
+                             className="relative border-none outline-none mx-auto mt-3 text-center "
+                             sx={{ width: "100%" }}
+                           >
+                             <Box
+                               className="absolute left-0 bottom-0 top-0 flex items-center justify-center mx-auto  rounded-l-md pl-2 bg-primary text-white break-words border-none outline-none z-10"
+                               sx={{ width: "40px" }}
+                             >
+                               <CalendarMonthIcon
+                                 color="white"
+                                 sx={{ mr: 1 }}
+                               />
+                             </Box>
+                             <TextField
+                               type="date"
+                               variant="filled"
+                               value={
+                                 departureDate.toISOString().split("T")[0]
+                               }
+                               onChange={handleDepartureDateChange}
+                               sx={{
+                                 width: "100%",
+                                 "& .MuiFilledInput-root": {
+                                   backgroundColor: "secondary.main",
+                                   borderRadius: "7px",
+                                   pl: 5,
+                                 },
+                                 "& .MuiFilledInput-input": {
+                                   py: 0.6,
+                                   pr: 2,
+                                 },
+                                 "&:before, &:after, &:hover:not(.Mui-disabled):before":
+                                   {
+                                     borderBottom: "none",
+                                   },
+                                 margin: "0 auto",
+                                 "& .MuiInputAdornment-root": {
+                                   display: "none",
+                                 },
+                               }}
+                               InputProps={{
+                                 disableUnderline: true,
+                               }}
+                             />
+                           </Box> 
+                          </Box>
+                        </Box>
                           </Box>
                         )}
                       </TabPanel>
@@ -483,8 +870,8 @@ export default function BannerTabs() {
                       <TabPanel value="4">noo content</TabPanel>
                     </Box>
                   </Grid>
-                  {/* right side box  */}
-                  <Grid size={{ xs: 12, md: 4 }}>
+                  {/* right side box */}
+                  <Grid size={{ xs: 12, md: 4 }} className="h-full">
                     <Box className="">
                       <div className="py-5 px-3 border-t-2 md:border-t-0 md:border-l-2 border-dotted border-primary rounded-lg bg-white h-full">
                         <RightSide />
