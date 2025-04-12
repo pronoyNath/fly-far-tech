@@ -18,6 +18,61 @@ const theme = createTheme({
     },
   },
   components: {
+    // Accordion styles
+    MuiAccordion: {
+      styleOverrides: {
+        root: {
+          boxShadow: 'none',
+          margin: 0,
+          transition: 'border 150ms ease',
+          '&:before': {
+            display: 'none',
+          },
+          '&.Mui-expanded': {
+            margin: 0,
+            border: 'none',
+            
+          },
+          '&:not(.Mui-expanded)': {
+            
+            // borderLeft: '1px solid rgba(0, 0, 0, 0.12)',
+            // borderRight: '1px solid rgba(0, 0, 0, 0.12)',
+          },
+          '& + &': {
+            borderTop: '1px solid rgba(0, 0, 0, 0.12)',
+          },
+        },
+      },
+    },
+    
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: {
+          padding: '0 16px',
+          minHeight: '48px',
+          '&.Mui-expanded': {
+            minHeight: '48px',
+            // borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+          },
+        },
+        content: {
+          margin: '12px 0',
+          '&.Mui-expanded': {
+            margin: '12px 0',
+            borderBottom: "none"
+          },
+        },
+      },
+    },
+    
+    MuiAccordionDetails: {
+      styleOverrides: {
+        root: {
+          padding: '16px',
+        },
+      },
+    },
+
     // Button styles
     MuiButton: {
       styleOverrides: {

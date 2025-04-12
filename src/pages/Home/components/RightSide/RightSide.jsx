@@ -1,7 +1,8 @@
 import { Box, MenuItem, Select, Button } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const RightSide = ({ tripType , handleAddMulticity}) => {
+const RightSide = ({ tripType, handleAddMulticity }) => {
   const [adultCount, setAdultCount] = useState(1);
   const [childCount, setChildCount] = useState(0);
   const [infantCount, setInfantCount] = useState(0);
@@ -154,23 +155,25 @@ const RightSide = ({ tripType , handleAddMulticity}) => {
           right: 16,
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          fullWidth
-          sx={{
-            py: 1,
-            borderRadius: "4px",
-            fontSize: "0.875rem",
-            fontWeight: "400",
-            textTransform: "none",
-          }}
-        >
-          SEARCH FOR FLIGHT
-        </Button>
+        <Link to={"/one-way-search"}>
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            sx={{
+              py: 1,
+              borderRadius: "4px",
+              fontSize: "0.875rem",
+              fontWeight: "400",
+              textTransform: "none",
+            }}
+          >
+            SEARCH FOR FLIGHT
+          </Button>
+        </Link>
         {tripType == "multi" && (
           <Button
-          onClick={handleAddMulticity}
+            onClick={handleAddMulticity}
             variant="contained"
             color="primary"
             fullWidth
