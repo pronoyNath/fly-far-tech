@@ -17,6 +17,12 @@ import { Typography, TextField, Grid } from "@mui/material";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import LocationSelect from "./LocationSelect";
 import RightSide from "../RightSide/RightSide";
+import Hotel from "../../Banner/BannerTabsData/Hotel/Hotel";
+import HotelRightSide from "../../Banner/BannerTabsData/Hotel/components/HotelRightSide";
+import TourSection from "../../Banner/BannerTabsData/Tour/TourSection";
+import TourRightSide from "../../Banner/BannerTabsData/Tour/components/TourRightSide";
+import VisaSection from "../../Banner/BannerTabsData/Visa/VisaSection";
+import VisaRightSide from "../../Banner/BannerTabsData/Visa/componets/VisaRightSide";
 
 const flightData = [
   {
@@ -58,6 +64,7 @@ const flightData = [
 ];
 
 export default function BannerTabs() {
+  const [selectedTab, setSelectedTab] = React.useState("flight");
   const [value, setValue] = React.useState("1");
   const [tripType, setTripType] = React.useState("round");
   const [departureCity, setDepartureCity] = React.useState("DAC"); // Initialize with a default value
@@ -77,7 +84,16 @@ export default function BannerTabs() {
   };
 
   const handleChange = (newValue) => {
+    const newTabType =
+      newValue === "1"
+        ? "flight"
+        : newValue === "2"
+        ? "hotel"
+        : newValue === "3"
+        ? "tour"
+        : "visa";
     setValue(newValue);
+    setSelectedTab(newTabType);
   };
 
   const handleTripTypeChange = (event) => {
@@ -197,7 +213,14 @@ export default function BannerTabs() {
               </div>
               <div className="mt-4 px-2 md:px-5 ">
                 <Grid container className="h-full flex-grow">
-                  <Grid size={{ xs: 12, md: 8 }}>
+                  <Grid
+                    size={
+                      (selectedTab === "flight" && { xs: 12, md: 8 }) ||
+                      ((selectedTab === "hotel" ||
+                        selectedTab === "tour" ||
+                        selectedTab === "visa") && { xs: 12, md: 9 })
+                    }
+                  >
                     <Box
                       className="h-full w-full px-4"
                       sx={{
@@ -767,18 +790,53 @@ export default function BannerTabs() {
                           </Box>
                         )}
                       </TabPanel>
-                      <TabPanel value="2">hi content</TabPanel>
-                      <TabPanel value="3">hol content</TabPanel>
-                      <TabPanel value="4">noo content</TabPanel>
+                      {/* hotel tab  */}
+                      <TabPanel value="2">
+                        <Hotel
+                          departureCity={departureCity}
+                          flightData={flightData}
+                          handleDepartureCityChange={handleDepartureCityChange}
+                          departureDate={departureDate}
+                          handleDepartureDateChange={handleDepartureDateChange}
+                        />
+                      </TabPanel>
+                      {/* Tour Tab  */}
+                      <TabPanel value="3">
+                        <TourSection
+                          departureCity={departureCity}
+                          flightData={flightData}
+                          handleDepartureCityChange={handleDepartureCityChange}
+                        />
+                      </TabPanel>
+                      {/* Visa Tab  */}
+                      <TabPanel value="4">
+                        <VisaSection
+                          departureCity={departureCity}
+                          flightData={flightData}
+                          handleDepartureCityChange={handleDepartureCityChange}
+                        />
+                      </TabPanel>
                     </Box>
                   </Grid>
                   {/* right side box */}
-                  <Grid size={{ xs: 12, md: 4 }}>
+                  <Grid
+                    size={
+                      (selectedTab === "flight" && { xs: 12, md: 4 }) ||
+                      (selectedTab === "hotel" && { xs: 12, md: 3 }) ||
+                      (selectedTab === "tour" && { xs: 12, md: 3 }) ||
+                      (selectedTab === "visa" && { xs: 12, md: 3 })
+                    }
+                  >
                     <div className="flex-grow py-5 px-3 border-t-2 md:border-t-0 md:border-l-2 border-dotted border-primary rounded-lg bg-white h-full">
-                      <RightSide
-                        handleAddMulticity={handleAddMulticity}
-                        tripType={tripType}
-                      />
+                      {selectedTab == "flight" && (
+                        <RightSide
+                          handleAddMulticity={handleAddMulticity}
+                          tripType={tripType}
+                        />
+                      )}
+                      {selectedTab == "hotel" && <HotelRightSide />}
+                      {selectedTab == "tour" && <TourRightSide />}
+                      {selectedTab == "visa" && <VisaRightSide />}
                     </div>
                   </Grid>
                 </Grid>
