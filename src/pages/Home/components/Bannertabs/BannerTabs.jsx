@@ -589,7 +589,7 @@ export default function BannerTabs() {
                               </Box>
                             </Box>
                             {/* one-way middle for icon */}
-                            <Box className=" my-auto hidden md:block">
+                            <Box className="mx-auto lg:my-auto hidden md:block">
                               <AirplanemodeActiveIcon
                                 className=""
                                 sx={{
@@ -693,7 +693,7 @@ export default function BannerTabs() {
                                     />
                                   </Box>
                                   {/* multi-way middle for icon */}
-                                  <Box className=" my-auto hidden md:block">
+                                  <Box className=" mx-auto lg:my-auto hidden md:block">
                                     <AirplanemodeActiveIcon
                                       className=""
                                       sx={{
@@ -827,7 +827,7 @@ export default function BannerTabs() {
                       (selectedTab === "visa" && { xs: 12, md: 3 })
                     }
                   >
-                    <div className="flex-grow py-5 px-3 border-t-2 md:border-t-0 md:border-l-2 border-dotted border-primary rounded-lg bg-white h-full">
+                    <div className="flex-grow py-5 px-3 border-t-2 lg:border-t-0 lg:border-l-2 border-dotted border-primary rounded-lg bg-white h-full">
                       {selectedTab == "flight" && (
                         <RightSide
                           handleAddMulticity={handleAddMulticity}
