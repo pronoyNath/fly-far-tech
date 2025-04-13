@@ -4,13 +4,14 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import FilterSide from "./components/FilterSide";
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import FlightDataCard from "./components/FlightDataCard/FlightDataCard";
+import MobileFilter from "./Filters/MobileFilter/MobileFilter";
 
 const OneWaySearchPage = () => {
   return (
     <div className="max-w-[75rem] mx-auto">
       <Stack direction="row" spacing={2} className="mx-5">
         {/* filter */}
-        <div className="hidden lg:block">
+        <Box sx={{display: { xs: "none", lg: "block" },}}>
           <Box
             sx={{
               backgroundColor: "white",
@@ -23,7 +24,7 @@ const OneWaySearchPage = () => {
           >
             <FilterSide />
           </Box>
-        </div>
+        </Box>
 
         {/* search result */}
         <div style={{ flex: 1 }}>
@@ -83,7 +84,12 @@ const OneWaySearchPage = () => {
                   </Typography>
                 </Box>
               </Box>
-              <Box>
+              <Box
+               
+                sx={{ display: "flex",
+                  flexDirection: { xs: "column", md: "row" },
+                  gap: {xs:"5px", md:"10px"} }}
+              >
                 <Button
                   variant="contained"
                   sx={{
@@ -97,6 +103,8 @@ const OneWaySearchPage = () => {
                 >
                   MODIFY SEARCH
                 </Button>
+                {/* Mobile Filter Button */}
+                <MobileFilter />
               </Box>
             </Box>
 
@@ -143,8 +151,8 @@ const OneWaySearchPage = () => {
           </Box>
           {/* data show  */}
           <Box>
-            <FlightDataCard/>
-            <FlightDataCard/>
+            <FlightDataCard />
+            <FlightDataCard />
           </Box>
         </div>
       </Stack>

@@ -37,7 +37,14 @@ export default function Navbar() {
           },
         }}
       >
-        <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            flexDirection: { xs: "column", md: "row" },
+
+          }}
+        >
           <Link to={"/"}>
             <img
               src={logo}
