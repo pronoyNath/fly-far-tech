@@ -144,6 +144,7 @@ const OneWaySearchPage = () => {
           {/* data show  */}
           <Box>
             <FlightDataCard/>
+            <FlightDataCard/>
           </Box>
         </div>
       </Stack>
