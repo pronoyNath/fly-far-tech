@@ -4,14 +4,18 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import FilterSide from "./components/FilterSide";
 import AirplanemodeActiveIcon from "@mui/icons-material/AirplanemodeActive";
 import FlightDataCard from "./components/FlightDataCard/FlightDataCard";
-import MobileFilter from "./Filters/MobileFilter/MobileFilter";
+import MobileFilter from "./components/Filters/MobileFilter/MobileFilter";
+
 
 const OneWaySearchPage = () => {
+  
+
+
   return (
     <div className="max-w-[75rem] mx-auto">
       <Stack direction="row" spacing={2} className="mx-5">
         {/* filter */}
-        <Box sx={{display: { xs: "none", lg: "block" },}}>
+        <Box sx={{ display: { xs: "none", lg: "block" } }}>
           <Box
             sx={{
               backgroundColor: "white",
@@ -85,10 +89,11 @@ const OneWaySearchPage = () => {
                 </Box>
               </Box>
               <Box
-               
-                sx={{ display: "flex",
+                sx={{
+                  display: "flex",
                   flexDirection: { xs: "column", md: "row" },
-                  gap: {xs:"5px", md:"10px"} }}
+                  gap: { xs: "5px", md: "10px" },
+                }}
               >
                 <Button
                   variant="contained"
@@ -131,7 +136,7 @@ const OneWaySearchPage = () => {
                   className="w-[40px] h-[40px] object-cover"
                   alt=""
                 />
-                <Box cllassName="text-xs">
+                <Box className="text-xs">
                   <h3 className="text-sm">BS</h3>
                   <h3 className="text-primary text-sm">BDT 5,539</h3>
                 </Box>
@@ -142,7 +147,7 @@ const OneWaySearchPage = () => {
                   className="w-[30px] h-[30px] object-cover"
                   alt=""
                 />
-                <Box cllassName="text-xs">
+                <Box className="text-xs">
                   <h3 className="text-sm">BG</h3>
                   <h3 className="text-primary text-sm">BDT 5,590</h3>
                 </Box>

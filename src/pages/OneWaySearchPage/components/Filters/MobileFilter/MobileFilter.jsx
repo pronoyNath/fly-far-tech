@@ -10,7 +10,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import FilterSide from "../../components/FilterSide";
+import FilterSide from "../../FilterSide";
 
 export default function MobileFilter() {
   const [open, setOpen] = React.useState(false);
@@ -29,20 +29,20 @@ export default function MobileFilter() {
 
   const list = () => (
     <div className="">
-          <Box
-            sx={{
-              backgroundColor: "white",
-              borderRadius: "7px",
-              padding: "15px",
-              my: "20px",
-              px: "20px",
-              // minHeight: "100%",
-              width: {xs:"250px", sm:"350px"},
-            }}
-          >
-            <FilterSide />
-          </Box>
-        </div>
+      <Box
+        sx={{
+          backgroundColor: "white",
+          borderRadius: "7px",
+          padding: "15px",
+          my: "20px",
+          px: "20px",
+          // minHeight: "100%",
+          width: { xs: "250px", sm: "350px" },
+        }}
+      >
+        <FilterSide />
+      </Box>
+    </div>
   );
 
   return (

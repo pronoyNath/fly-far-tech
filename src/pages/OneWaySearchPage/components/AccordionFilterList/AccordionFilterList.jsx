@@ -4,13 +4,13 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import RangeSlider from "../RangeSlider";
-import FundBox from "../../Filters/FundBox";
-import StopsFilter from "../../Filters/StopsFilter";
-import DepartureTimeBox from "../../Filters/DepartureTImes";
-import ArrivalTimeBox from "../../Filters/ArrivalTimes";
-import LayoverTime from "../../Filters/LayoverTIme";
-import LayoverAirportBox from "../../Filters/LayoverAirport";
-import BaggageBox from "../../Filters/Baggage";
+import FundBox from "../Filters/FundBox";
+import StopsFilter from "../Filters/StopsFilter";
+import DepartureTimeBox from "../Filters/DepartureTImes";
+import ArrivalTimeBox from "../Filters/ArrivalTimes";
+import LayoverTime from "../Filters/LayoverTIme";
+import LayoverAirportBox from "../Filters/LayoverAirport";
+import BaggageBox from "../Filters/Baggage";
 
 export default function AccordionFilterList() {
   return (
