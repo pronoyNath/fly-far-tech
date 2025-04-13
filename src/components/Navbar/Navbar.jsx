@@ -27,7 +27,7 @@ export default function Navbar() {
           bgcolor: isScrolled ? "#ffffff" : "#EDF2F6",
           color: "#000000",
           pt: 2,
-          pb:1,
+          pb: 1,
           px: 5,
           transition: "background-color 0.3s ease",
           zIndex: 1100,
@@ -38,23 +38,29 @@ export default function Navbar() {
         }}
       >
         <Toolbar sx={{ justifyContent: "space-between" }}>
-         <Link to={"/"}>
-         <img
-            src={logo}
-            alt="FlyFar Logo"
-            className="cursor-pointer"
-            style={{ height: "60px", objectFit: "contain" }}
-          />
-         </Link>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Link to={"/"}>
+            <img
+              src={logo}
+              alt="FlyFar Logo"
+              className="cursor-pointer"
+              style={{ height: "60px", objectFit: "contain" }}
+            />
+          </Link>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: { xs: 1, md: 2 },
+            }}
+          >
             <Button
               variant="contained"
               color="primary"
               sx={{
                 padding: "4px 16px",
                 "@media (max-width: 600px)": {
-                  padding: "6px 8px",
-                  fontSize: "0.8rem",
+                  padding: "3px 5px",
+                  fontSize: "0.7rem",
                 },
               }}
             >
@@ -67,8 +73,8 @@ export default function Navbar() {
                 color: "white",
                 padding: "4px 16px",
                 "@media (max-width: 600px)": {
-                  padding: "6px 8px",
-                  fontSize: "0.8rem",
+                  padding: "3px 5px",
+                  fontSize: "0.7rem",
                 },
               }}
               color="secondary"
