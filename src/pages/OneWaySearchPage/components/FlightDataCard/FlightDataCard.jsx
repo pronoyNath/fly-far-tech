@@ -6,6 +6,7 @@ import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useEffect, useState } from "react";
+import FlightDetailsModal from "../FlightDetailsModal/FlightDetailsModal";
 
 const FlightDataCard = () => {
   const [flightsData, setFlightsData] = useState([]);
@@ -309,28 +310,7 @@ const FlightDataCard = () => {
             >
               Book Now
             </Button>
-            <Button
-              variant="text"
-              sx={{
-                color: "secondary.dark",
-                fontSize: "0.8rem",
-                marginTop: "5px",
-                padding: "3px 0px",
-                width: { xs: "100%", sm: "auto" },
-              }}
-              endIcon={
-                <ArrowRightIcon
-                  sx={{
-                    color: "secondary.dark",
-                    width: "30px",
-                    height: "30px",
-                    marginLeft: "-10px",
-                  }}
-                />
-              }
-            >
-              FLIGHT DETAILS
-            </Button>
+            <FlightDetailsModal/>
           </Box>
         </Box>
       </Box>
