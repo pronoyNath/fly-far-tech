@@ -31,5 +31,3 @@ This project focuses on implementing clean UI/UX design along with dynamic data 
 
 ---
 
-## 📁 Project Structure
-

@@ -270,7 +270,7 @@ export default function BannerTabs() {
                                   }}
                                 />
                               }
-                              label="ROUND-TRIP"
+                              label="ROUND-WAY"
                             />
                             <FormControlLabel
                               value="one"
@@ -372,6 +372,7 @@ export default function BannerTabs() {
                                   }
                                   onChange={handleDepartureDateChange}
                                   sx={{
+                                    
                                     width: "100%",
                                     "& .MuiFilledInput-root": {
                                       backgroundColor: "secondary.main",
@@ -379,8 +380,10 @@ export default function BannerTabs() {
                                       pl: 5,
                                     },
                                     "& .MuiFilledInput-input": {
-                                      py: 0.6,
+                                      py: 0.9,
                                       pr: 2,
+                                      fontSize:".9rem",
+                                      color: "secondary.dark", // 👈 this applies the correct text color
                                     },
                                     "&:before, &:after, &:hover:not(.Mui-disabled):before":
                                       {
@@ -478,8 +481,10 @@ export default function BannerTabs() {
                                       pl: 5,
                                     },
                                     "& .MuiFilledInput-input": {
-                                      py: 0.6,
+                                      py: 0.9,
                                       pr: 2,
+                                      fontSize:".9rem",
+                                      color: "secondary.dark", // 👈 this applies the correct text color
                                     },
                                     "&:before, &:after, &:hover:not(.Mui-disabled):before":
                                       {
@@ -570,8 +575,10 @@ export default function BannerTabs() {
                                       pl: 5,
                                     },
                                     "& .MuiFilledInput-input": {
-                                      py: 0.6,
+                                      py: 0.9,
                                       pr: 2,
+                                      fontSize:".9rem",
+                                      color: "secondary.dark", // 👈 this applies the correct text color
                                     },
                                     "&:before, &:after, &:hover:not(.Mui-disabled):before":
                                       {
@@ -766,8 +773,10 @@ export default function BannerTabs() {
                                             pl: 5,
                                           },
                                           "& .MuiFilledInput-input": {
-                                            py: 0.6,
-                                            pr: 2,
+                                            py: 0.9,
+                                      pr: 2,
+                                      fontSize:".9rem",
+                                            color: "secondary.dark", // 👈 this applies the correct text color
                                           },
                                           "&:before, &:after, &:hover:not(.Mui-disabled):before":
                                             {

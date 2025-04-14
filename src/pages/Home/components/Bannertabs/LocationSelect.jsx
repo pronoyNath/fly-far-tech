@@ -15,10 +15,13 @@ const LocationSelect = ({flightData,departureCity,handleDepartureCityChange}) =>
         onChange={handleDepartureCityChange}
         displayEmpty
         sx={{
+          fontSize:"0.8rem",
+          color:"secondary.dark",
           width: { xs: '100%' }, // Full width on small screens, auto width on larger
           maxWidth: { xs: 'none', md: '250px' } ,
           "& .MuiSelect-select": {
-            py: 0.5,
+            py: 0.9,
+            px: 2,
             ml: 4,
             backgroundColor: "secondary.main",
             borderRadius: "7px",
@@ -45,7 +48,7 @@ const LocationSelect = ({flightData,departureCity,handleDepartureCityChange}) =>
         }}
       >
         {flightData && flightData.map((city) => (
-          <MenuItem key={city.code} value={city.code}>
+          <MenuItem  key={city.code} value={city.code}>
             <Box>
               <Box>
                 {city.airport}, ({city.code})

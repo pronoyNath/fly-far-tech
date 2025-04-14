@@ -98,21 +98,18 @@ const Footer = () => {
                 Question or feedback we would love to hear from you
               </a>
 
-              <div
-                className="relative rounded-full outline bg-primary
-                text-white px-5 py-2"
-              >
+              <div className="relative rounded-full outline bg-primary text-white px-5 py-2">
                 <input
                   type="text"
                   placeholder="Email Address"
-                  className="w-full bg-primary"
+                  className="w-full bg-primary placeholder-white focus:placeholder-white focus:outline-none"
                 />
                 <SendIcon
                   sx={{
-                    transform: "rotate(-45deg)", 
+                    transform: "rotate(-45deg)",
                     transition: "transform 0.3s ease-in-out",
                   }}
-                  className="text-primary absolute right-3 top-1 p-1 h-20 w-20 text-xl bg-white rounded-full"
+                  className="text-primary absolute right-3 top-1.5 p-1 h-24 w-24 text-xl bg-white rounded-full"
                 />
               </div>
             </div>
